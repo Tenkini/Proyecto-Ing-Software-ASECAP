@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using System.Data;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Proyecto_IngSoftware_Grupo_3
 
@@ -7,32 +8,38 @@ namespace Proyecto_IngSoftware_Grupo_3
     internal class AsecapDatabase
    
     {
-        private NpgsqlConnection connection;
-        private const string CONNECTION_STRING = "Server = localhost; Port = 5432; User Id = postgres; Password = 0609; Database = ASECAPDatabase;";
+        //private NpgsqlConnection connection;
+        private const string CONNECTION_STRING = "Host=localhost:5432;"+"Username=postgres;"+"Password=0609;"+"Database=ASECAPDatabase";
+        private const string TABLA_ADMIN = "adm";
+        private const string TABLA_CLIENTE = "cliente";
+        private const string TABLA_DOCUMENTO = "documento";
 
-        internal void Connect()
+        internal NpgsqlConnection Connect()
         {
-            connection = new NpgsqlConnection(CONNECTION_STRING);
+            NpgsqlConnection connection = new NpgsqlConnection(CONNECTION_STRING);
             connection.Open();
+            return connection;
         }
 
-        internal async Task AddAdmin(Admin adm)
+        internal void AddAdmin(Admin adm)
         {
-            string commandText = $"insert into {adm} (rut_admin, pass) values (@rut_admin, @pass)";
-            await using (var cmd = new NpgsqlCommand(commandText, connection))
+            NpgsqlConnection connection = Connect();
+            string commandText = $"insert into {TABLA_ADMIN} (rut_admin, pass) values (@rut_admin, @pass)";
+            using (var cmd = new NpgsqlCommand(commandText, connection))
             {
                 cmd.Parameters.AddWithValue("rut_admin", adm.rut_admin);
                 cmd.Parameters.AddWithValue("pass", adm.pass);
 
-                await cmd.ExecuteNonQueryAsync();
+                cmd.ExecuteNonQuery();
             }
             // falta tirar la excepcion si se agrega una llave foranea que no este en la base de datos
         }
 
-        internal async Task AddCliente(Cliente cliente)
+        internal void AddCliente(Cliente cliente)
         {
-            string commandText = $"insert into {cliente} (rut_cliente, rut_admin, tipo, nombre, descripcion) values (@rut_cliente, @rut_admin, @tipo, @nombre, @descripcion)";
-            await using (var cmd = new NpgsqlCommand(commandText, connection))
+            NpgsqlConnection connection = Connect();
+            string commandText = $"insert into {TABLA_CLIENTE} (rut_cliente, rut_admin, tipo, nombre, descripcion) values (@rut_cliente, @rut_admin, @tipo, @nombre, @descripcion)";
+            using (var cmd = new NpgsqlCommand(commandText, connection))
             {
                 cmd.Parameters.AddWithValue("rut_admin", cliente.rut_admin);
                 cmd.Parameters.AddWithValue("rut_cliente", cliente.rut_cliente);
@@ -40,24 +47,44 @@ namespace Proyecto_IngSoftware_Grupo_3
                 cmd.Parameters.AddWithValue("nombre", cliente.nombre);
                 cmd.Parameters.AddWithValue("descripcion", cliente.descripcion);
 
-                await cmd.ExecuteNonQueryAsync();
+                cmd.ExecuteNonQuery();
             }
             // falta tirar la excepcion si se agrega una llave foranea que no este en la base de datos
         }
 
-        internal async Task AddDocumento(Documento documento)
+        internal void AddDocumento(Documento documento)
         {
-            string commandText = $"insert into {documento} (id_documento, rut_cliente, tipo, fecha_modificacion) values (@id_documento, @rut_cliente, @tipo, @fecha_modificacion)";
-            await using (var cmd = new NpgsqlCommand(commandText, connection))
+            NpgsqlConnection connection = Connect();
+            string commandText = $"insert into {TABLA_DOCUMENTO} (id_documento, rut_cliente, tipo, fecha_modificacion) values (@id_documento, @rut_cliente, @tipo, @fecha_modificacion)";
+            using (var cmd = new NpgsqlCommand(commandText, connection))
             {
                 cmd.Parameters.AddWithValue("id_documento", documento.id_documento);
                 cmd.Parameters.AddWithValue("rut_cliente", documento.rut_cliente);
                 cmd.Parameters.AddWithValue("tipo", documento.tipo);
                 cmd.Parameters.AddWithValue("fecha_modificacion", documento.fecha_modificacion);
 
-                await cmd.ExecuteNonQueryAsync();
+                cmd.ExecuteNonQuery();
             }
             // falta tirar la excepcion si se agrega una llave foranea que no este en la base de datos
+        }
+
+        internal Admin GetAdminByUser(string user)
+        {
+            NpgsqlConnection connection = Connect();
+            
+            string commandText = $"SELECT * FROM {TABLA_ADMIN} WHERE rut_admin ='" + user + "'";
+            NpgsqlCommand cmd = new NpgsqlCommand(commandText, connection);
+            
+            cmd.Parameters.AddWithValue("rut_admin", user);
+
+            NpgsqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Admin adm = ReadAdmin(reader);
+                return adm;
+            }
+            
+            return null;
         }
 
         internal static Admin ReadAdmin(NpgsqlDataReader reader)
@@ -112,12 +139,16 @@ namespace Proyecto_IngSoftware_Grupo_3
             return documento;
         }
 
-        internal string login(string user)
+        internal string GetVersion()
         {
-            Connect();
-            string query = @"select pass from adm where user = adm.rut_admin";
-            NpgsqlCommand cmd = new NpgsqlCommand(query);
-            return "xd";
+            NpgsqlConnection connection = Connect();
+            var sql = "SELECT version()";
+
+            using var cmd = new NpgsqlCommand(sql, connection);
+
+            var versionFromQuery = (cmd.ExecuteScalar()).ToString();
+
+            return versionFromQuery;
         }
     }
 }

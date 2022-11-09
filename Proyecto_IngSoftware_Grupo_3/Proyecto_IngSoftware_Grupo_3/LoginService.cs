@@ -4,23 +4,20 @@ namespace Proyecto_IngSoftware_Grupo_3
 {
     internal class LoginService
     {
-        internal bool validateLogin(string user, string pass)
+        internal bool ValidateLogin(string user, string pass)
         {
             AsecapDatabase adb = new AsecapDatabase();
 
             //falta testear las conexiones y querys
 
-            /*if (adb.connect())
+            Admin adm = adb.GetAdminByUser(user);
+
+            if (adm == null) return false;
+            else
             {
-                String passdb = adb.login(user);
-                if (passdb != null) { MessageBox.Show("Usuario no encontrado"); return false; }
-                else if (pass == passdb) return true;
-                else return false;
-            }*/
-
-            MessageBox.Show("Conexion no lograda");
-            return false;
-
+                if (adm.pass == pass) return true;
+                return false;
+            }
         }
     }
 }

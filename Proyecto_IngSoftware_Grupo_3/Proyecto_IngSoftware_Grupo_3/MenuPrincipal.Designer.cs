@@ -63,6 +63,7 @@
             this.buttonDesplegarClientes.TabIndex = 2;
             this.buttonDesplegarClientes.Text = "Desplegar todos los clientes";
             this.buttonDesplegarClientes.UseVisualStyleBackColor = true;
+            this.buttonDesplegarClientes.Click += new System.EventHandler(this.buttonDesplegarClientes_Click);
             // 
             // buttonIngresarCliente
             // 

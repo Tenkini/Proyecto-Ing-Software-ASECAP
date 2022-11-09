@@ -16,5 +16,10 @@ namespace Proyecto_IngSoftware_Grupo_3
         {
             InitializeComponent();
         }
+
+        private void buttonDesplegarClientes_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -10,18 +10,18 @@ namespace Proyecto_IngSoftware_Grupo_3
         private void buttonConfirmar_Click(object sender, EventArgs e)
         {
 
-            String user = textBoxRut.Text;
-            String pass = textBoxPassword.Text;
+            string user = textBoxRut.Text;
+            string pass = textBoxPassword.Text;
 
             LoginService ls = new LoginService();
 
-            if (!ls.validateLogin(user, pass)) MessageBox.Show("Login invalido");
-            else
+            if (ls.ValidateLogin(user, pass))
             {
                 this.Hide();
                 MenuPrincipal mp = new MenuPrincipal();
                 mp.Show();
             }
+            else MessageBox.Show("Login invalido");
         }
     }
 }
