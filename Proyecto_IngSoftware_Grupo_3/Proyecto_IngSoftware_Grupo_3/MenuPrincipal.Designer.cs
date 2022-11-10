@@ -73,6 +73,7 @@
             this.buttonIngresarCliente.TabIndex = 3;
             this.buttonIngresarCliente.Text = "Ingresar nuevo cliente";
             this.buttonIngresarCliente.UseVisualStyleBackColor = true;
+            this.buttonIngresarCliente.Click += new System.EventHandler(this.buttonIngresarCliente_Click);
             // 
             // linkLabelCerrarSesion
             // 
@@ -82,14 +83,16 @@
             this.linkLabelCerrarSesion.Size = new System.Drawing.Size(76, 15);
             this.linkLabelCerrarSesion.TabIndex = 4;
             this.linkLabelCerrarSesion.TabStop = true;
-            this.linkLabelCerrarSesion.Text = "Cerrar Sesion";
+            this.linkLabelCerrarSesion.Text = "Cerrar Sesión";
+            this.linkLabelCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelCerrarSesion_LinkClicked);
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Proyecto_IngSoftware_Grupo_3.Properties.Resources._2f5c57f4_6966_40cf_a19d_18ae4206597d__1_;
+            this.pictureBox1.Image = global::Proyecto_IngSoftware_Grupo_3.Properties.Resources.ASECAP_LOGO_FINAL;
             this.pictureBox1.Location = new System.Drawing.Point(80, 47);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(202, 186);
+            this.pictureBox1.Size = new System.Drawing.Size(205, 195);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 

@@ -139,6 +139,29 @@ namespace Proyecto_IngSoftware_Grupo_3
             return documento;
         }
 
+        internal DataTable ShowClientesDatabase()
+        {
+            NpgsqlConnection connection = Connect();
+
+            NpgsqlCommand cmd = new NpgsqlCommand();
+            cmd.Connection = connection;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = $"select * from {TABLA_CLIENTE}";
+
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.HasRows)
+            {
+                DataTable dt = new DataTable();
+                dt.Load(dr);
+                DataGridView dgv = new DataGridView();
+                dgv.DataSource = dt;
+                return dt;
+            }
+            return null;
+
+        }
+
         internal string GetVersion()
         {
             NpgsqlConnection connection = Connect();

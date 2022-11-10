@@ -42,7 +42,8 @@
             this.imagenLogo.Location = new System.Drawing.Point(240, 14);
             this.imagenLogo.Margin = new System.Windows.Forms.Padding(5);
             this.imagenLogo.Name = "imagenLogo";
-            this.imagenLogo.Size = new System.Drawing.Size(199, 193);
+            this.imagenLogo.Size = new System.Drawing.Size(199, 206);
+            this.imagenLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imagenLogo.TabIndex = 0;
             this.imagenLogo.TabStop = false;
             // 
@@ -78,7 +79,7 @@
             this.buttonConfirmar.UseVisualStyleBackColor = true;
             this.buttonConfirmar.Click += new System.EventHandler(this.buttonConfirmar_Click);
             // 
-            // PantallaPrincipal
+            // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -89,8 +90,9 @@
             this.Controls.Add(this.imagenLogo);
             this.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "PantallaPrincipal";
+            this.Name = "Login";
             this.Text = "ASECAP Software";
+            this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imagenLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

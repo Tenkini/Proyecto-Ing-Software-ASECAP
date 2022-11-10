@@ -33,3 +33,4 @@ C:\Proyectos\Proyecto-Ing-Software-ASECAP\Proyecto_IngSoftware_Grupo_3\Proyecto_
 C:\Proyectos\Proyecto-Ing-Software-ASECAP\Proyecto_IngSoftware_Grupo_3\Proyecto_IngSoftware_Grupo_3\bin\Debug\net6.0-windows\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Proyectos\Proyecto-Ing-Software-ASECAP\Proyecto_IngSoftware_Grupo_3\Proyecto_IngSoftware_Grupo_3\obj\Debug\net6.0-windows\Proyecto_IngSoftware_Grupo_3.DatosClientes.resources
 C:\Proyectos\Proyecto-Ing-Software-ASECAP\Proyecto_IngSoftware_Grupo_3\Proyecto_IngSoftware_Grupo_3\obj\Debug\net6.0-windows\Proyecto_IngSoftware_Grupo_3.csproj.CopyComplete
+C:\Proyectos\Proyecto-Ing-Software-ASECAP\Proyecto_IngSoftware_Grupo_3\Proyecto_IngSoftware_Grupo_3\obj\Debug\net6.0-windows\Proyecto_IngSoftware_Grupo_3.RegistrarCliente.resources
