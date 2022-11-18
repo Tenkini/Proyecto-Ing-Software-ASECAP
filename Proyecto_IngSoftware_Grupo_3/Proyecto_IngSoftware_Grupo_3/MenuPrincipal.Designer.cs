@@ -34,6 +34,7 @@
             this.buttonIngresarCliente = new System.Windows.Forms.Button();
             this.linkLabelCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.buttonSearchClient = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,9 +52,9 @@
             this.labelBuscarCliente.AutoSize = true;
             this.labelBuscarCliente.Location = new System.Drawing.Point(482, 120);
             this.labelBuscarCliente.Name = "labelBuscarCliente";
-            this.labelBuscarCliente.Size = new System.Drawing.Size(77, 15);
+            this.labelBuscarCliente.Size = new System.Drawing.Size(153, 15);
             this.labelBuscarCliente.TabIndex = 1;
-            this.labelBuscarCliente.Text = "Nombre/RUT";
+            this.labelBuscarCliente.Text = "Búsqueda por Nombre/RUT";
             // 
             // buttonDesplegarClientes
             // 
@@ -96,11 +97,22 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
+            // buttonSearchClient
+            // 
+            this.buttonSearchClient.Location = new System.Drawing.Point(665, 134);
+            this.buttonSearchClient.Name = "buttonSearchClient";
+            this.buttonSearchClient.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearchClient.TabIndex = 6;
+            this.buttonSearchClient.Text = "Buscar";
+            this.buttonSearchClient.UseVisualStyleBackColor = true;
+            this.buttonSearchClient.Click += new System.EventHandler(this.buttonSearchClient_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonSearchClient);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.linkLabelCerrarSesion);
             this.Controls.Add(this.buttonIngresarCliente);
@@ -123,5 +135,6 @@
         private Button buttonIngresarCliente;
         private LinkLabel linkLabelCerrarSesion;
         private PictureBox pictureBox1;
+        private Button buttonSearchClient;
     }
 }

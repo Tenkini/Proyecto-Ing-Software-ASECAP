@@ -37,5 +37,26 @@ namespace Proyecto_IngSoftware_Grupo_3
             Login l = new Login();
             l.Show();
         }
+
+        private void buttonSearchClient_Click(object sender, EventArgs e)
+        {
+            //falta buscar con un solo nombre y buscar
+            //quiza mejor juntar pantallas para ver algo mas directo
+            //falta normalizar los textos que entran y que salen
+            SearchClientByParamService scp = new SearchClientByParamService();
+            string param = textBoxBuscarCliente.Text;
+
+            if (scp.existsClientByRut(param) || scp.existsClientByName(param))
+            {
+                this.Hide();
+                ClientInfoDisplay ci = new ClientInfoDisplay();
+                ci.Show();
+            }
+
+            else
+            {
+                MessageBox.Show("Cliente con esos datos no existe");
+            }
+        }
     }
 }

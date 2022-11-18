@@ -121,6 +121,44 @@ namespace Proyecto_IngSoftware_Grupo_3
             return cliente;
         }
 
+        internal Cliente GetClientByName(string name)
+        {
+            NpgsqlConnection connection = Connect();
+
+            string commandText = $"SELECT * FROM {TABLA_CLIENTE} WHERE nombre ='" + name + "'";
+            NpgsqlCommand cmd = new NpgsqlCommand(commandText, connection);
+
+            cmd.Parameters.AddWithValue("nombre", name);
+
+            NpgsqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Cliente cliente = ReadCliente(reader);
+                return cliente;
+            }
+
+            return null;
+        }
+
+        internal Cliente GetClientByRut(string rut)
+        {
+            NpgsqlConnection connection = Connect();
+
+            string commandText = $"SELECT * FROM {TABLA_CLIENTE} WHERE rut_cliente ='" + rut + "'";
+            NpgsqlCommand cmd = new NpgsqlCommand(commandText, connection);
+
+            cmd.Parameters.AddWithValue("rut_cliente", rut);
+
+            NpgsqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Cliente client = ReadCliente(reader);
+                return client;
+            }
+
+            return null;
+        }
+
         internal static Documento ReadDocumento(NpgsqlDataReader reader)
         {
             string? id_documento = reader["id_documento"] as string;
